@@ -80,9 +80,6 @@ void loop()
 
   long periodTime = getPeriodTime(frequency);
 
-  // új periódus kezdődik ha:
-  // - ez az első periódus
-  // - előző periódusnak vége van (több idő telt el azóta, mint a periódusidő)
   if (firstStart || timeDifference(periodStart, micros()) >= (unsigned long)periodTime)
   {
     firstStart = false;
@@ -93,7 +90,6 @@ void loop()
 
   unsigned long timeSincePeriodStart = timeDifference(periodStart, micros());
 
-  // annyi idő telt már el, hogy a második kimenet következik
   if (timeSincePeriodStart > firstOutputThreshold)
   {
     digitalWrite(output1Pin, LOW);
